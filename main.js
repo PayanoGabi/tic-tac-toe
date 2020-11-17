@@ -1,58 +1,129 @@
-//function declaration hositing
+//declaring constants
 
-function gameplay() {
-  console.log('hello');
-}
-
-gameplay();
-
-// Greetings Player Div add input from user to get name
-
-document.body.onload = greetDiv;
-
-function greetDiv() {
-  const newDiv = document.createElement("div");
-  const greetText = document.createTextNode("Greetings Player");
-  newDiv.appendChild(greetText);
-  const createdDiv = document.getElementById('helloDiv');
-  document.body.insertBefore(greetText, createdDiv);
-}
-
-//
-const cellPlay = function (){
-
-
-}
-
-// function sayHi(a) {
-//   var greeting = "Greetings " + a ;
-//   return greeting;
-// }
-// console.log(sayHi("Gabab"));
-//
-
-var testExample = function (a){
-  var greeting = "Greetings " + a;
-  return greeting;
-
-}
-var a = "gaba";
-console.log(testExample(a));
-
-// const greetPlayer = function(name){
-//   console.log(`good move ${name}`);
-//
-// };
-//
-// greetPlayer('gabi');
-
+const statusDiv = document.querySelector('.status'); // to change game status div
+const resetDiv = document.querySelector('.reset-button'); // to refresh game
+const areaCellDivs = document.querySelectorAll('.area-cell'); //target cells
 
 // function expression - storing the function in a variable to be evoked later -remember no hoisting
 
 
-const clickPay = function(x){
-  console.log(`good move ${x}`);
+// creating variables that won't change
 
+
+// game variables & main boolean factors
+
+let liveGame = true;
+let nextTurn = true;
+let winningSymbol = null;
+
+const lettersToSymbol = (letter) => letter === 'x' ? xSymbol : oSymbol;
+
+//declaring the winner
+const winningPlay = (letter) => {
+    liveGame = false;
+    winningSymbol = letter;
+    if (winningSymbol == 'x') {
+      statusDiv.innerHTML = "x has won";
+    } else {
+      statusDiv.innerHTML = "o has won";
+    }
+  }
+
+
+const updatedGameStatus = () => {
+    const areaCellOne = areaCellDivs[0].classList[1];
+    const areaCellTwo = areaCellDivs[1].classList[1];
+    const areaCellThree = areaCellDivs[2].classList[1];
+    const areaCellFour = areaCellDivs[3].classList[1];
+    const areaCellFive = areaCellDivs[4].classList[1];
+    const areaCellSix = areaCellDivs[5].classList[1];
+    const areaCellSeven = areaCellDivs[6].classList[1];
+    const areaCellEight = areaCellDivs[7].classList[1];
+    const areaCellNine = areaCellDivs[8].classList[1];
+
+
+//Winning possibilites logic
+
+//positioned from area cell one
+
+if (areaCellOne && areaCellOne === areaCellTwo === areaCellThree){
+  winningPlay(areaCellOne); //horizontal win
+} else if (areaCellOne && areaCellOne === areaCellFour === areaCellNine){
+  winningPlay(); //vertical win
+} else if (areaCellOne && areaCellOne === areaCellFive === areaCellSeven){
+  winningPlay(areaCellOne); //diagonal win
+  //position from area cell two
+} else if (areaCellTwo && areaCellTwo === areaCellFive === areaCellEight){
+
+  winningPlay(areaCellTwo); //vertical win
+} else if (areaCellThree && areaCellThree === areaCellSix === areaCellNine){
+  winningPlay(areaCellThree);
+
+  //position from area cell four
+} else if (areaCellFour && areaCellFour === areaCellFive === areaCellSix){
+  winningPlay(areaCellFour); //horizontal win
+} else if (areaCellSeven && areaCellSeven === areaCellEight === areaCellNine){
+  winningPlay(areaCellSeven);
+
+//if all game cells are occupied and no winner, creat tie
+
+} else if (areaCellOne && areaCellTwo && areaCellThree && areaCellFour && areaCellFive && areaCellSix && areaCellSeven && areaCellEight && areaCellNine){
+    liveGame = false;
+    statusDiv.innerHTML = 'Tie!';
+
+} else {
+    nextTurn = !nextTurn;
+    if (nextTurn) {
+        statusDiv.innerHTML = "x is next";
+    } else {
+        statusDiv.innerHTML = "o is next";
+    }
+
+}
+};
+//reset game
+const reseting =  () => {
+  nextTurn = true;
+  statusDiv.innerHTML = "next players turn";
+  winningSymbol = null;
+  for (const cell of areaCellDivs) {
+    cell.classList.remove('x');
+    cell.classList.remove('o');
+  }
 };
 
-clickPay('o');
+//if it is not x's turn it needs to be o's turn
+
+const gamePlay = (e) => {
+    const classList = e.target.classList;
+    // console.log(e.target.classList);
+    if (classList[1] == 'x' || classList[1] == 'o') {
+        return;
+    }
+
+    if (nextTurn) {
+        e.target.classList.add('x');
+        nextTurn = !nextTurn;
+        updatedGameStatus();
+
+     } else {
+         e.target.classList.add('o');
+         nextTurn = !nextTurn;
+         updatedGameStatus();
+    }
+};
+
+//when a cell is clicked display players symbol on selected area.
+// for( const cell of areaCellDiv){
+//     cell.addEventListener('click', gamePlay);
+// }
+
+//if it is not x's turn it needs to be o's turn
+
+//when there are no more plays left end gamePlay
+
+resetDiv.addEventListener('click', reseting);
+
+  for (const cell of areaCellDivs ) {
+    cell.addEventListener('click', gamePlay);
+  }

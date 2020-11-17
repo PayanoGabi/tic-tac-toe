@@ -90,5 +90,5 @@ align-items: center;
 .o::after {
     content: '⚬';
     font-size: 200px;
-    color:palegreen;
+    color:#fff;
 }
