@@ -8,6 +8,8 @@ body {
   display: flex;
   justify-content: center;
   color: brown;
+  font-family: 'Goldman', cursive;
+
 }
 
 
@@ -52,4 +54,41 @@ align-items: center;
   display: flex;
   justify-content: center;
   text-align: center;
+  font-family: 'Goldman', cursive;
+  font-size:50px;
+
+}
+.game-status{
+  display: flex;
+  justify-content: space-around;
+  margin-top:30px;
+  margin-bottom: 30px;
+}
+
+.status{
+  padding: 2%;
+}
+
+.reset-button {
+  cursor: pointer;
+  border-style: outset;
+  padding: 2%;
+}
+
+#helloDiv{
+  display: flex;
+  justify-content:center;
+  color: black;
+}
+
+.x::after {
+    content: '×';
+    font-size: 200px;
+    color: #000;
+
+}
+.o::after {
+    content: '⚬';
+    font-size: 200px;
+    color:palegreen;
 }
