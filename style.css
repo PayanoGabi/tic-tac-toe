@@ -17,3 +17,14 @@ body {
   padding: 50px;
   border-radius: 25px;
 }
+.game-cells{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . ."
+    ". . ."
+    ". . .";
+}
+}
