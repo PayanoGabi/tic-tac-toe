@@ -20,27 +20,27 @@ body {
   border-radius: 25px;
 }
 
-.game-cells{
+.game-board{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 5px 5px;
   grid-template-areas:
-    "area-cell one area-cell two area-cell three"
-    "area-cell four area-cell five area-cell six"
-    "area-cell seven area-cell eight area-cell nine";
+    "cell one cell two cell three"
+    "cell four cell five cell six"
+    "cell seven cell eight cell nine";
 }
-.area-cell one { grid-area: area-cell one; }
-.area-cell two { grid-area: area-cell two; }
-.area-cell three { grid-area: area-cell three; }
-.area-cell four { grid-area: area-cell four; }
-.area-cell five { grid-area: area-cell five; }
-.area-cell six { grid-area: area-cell six; }
-.area-cell seven { grid-area: area-cell seven; }
-.area-cell eight { grid-area: area-cell eight; }
-.area-cell nine { grid-area: area-cell nine; }
+.cell one { grid-area: cell one; }
+.cell two { grid-area: cell two; }
+.cell three { grid-area: cell three; }
+.cell four { grid-area: cell four; }
+.cell five { grid-area: cell five; }
+.cell six { grid-area: cell six; }
+.cell seven { grid-area: cell seven; }
+.cell eight { grid-area: cell eight; }
+.cell nine { grid-area: cell nine; }
 
-.area-cell {
+.cell {
 height: 200px;
 width: 200px;
 background: lightblue;
@@ -48,6 +48,7 @@ cursor: pointer;
 display: flex;
 justify-content: center;
 align-items: center;
+font-size: 80px;
 }
 
 .title{
@@ -69,10 +70,18 @@ align-items: center;
   padding: 2%;
 }
 
-.reset-button {
+.start-btn {
   cursor: pointer;
   border-style: outset;
   padding: 2%;
+  background-color: yellow;
+}
+
+.reset-btn {
+  cursor: pointer;
+  border-style: outset;
+  padding: 2%;
+
 }
 
 #helloDiv{
@@ -85,10 +94,19 @@ align-items: center;
     content: '×';
     font-size: 200px;
     color: #000;
-
 }
+
 .o::after {
     content: '⚬';
     font-size: 200px;
     color:#fff;
+}
+
+.endgame {
+  display: none;
+  background-color: grey;
+  margin: 50px;
+  padding: 23em;
+  position: absolute;
+  text-align: center;
 }
