@@ -127,13 +127,23 @@ function checkBoardStat() {
 
 // let gameBoxes = ["","","","","","","","","",];
 
-let goTime = document.querySelector('.start-btn');
+let goTime = document.querySelector('.reset-btn');
+
 
 goTime.addEventListener('click', resetGame);
 
 function resetGame() {
-  if (goTime.clicked = true ){
-    alert('hi');
+
+  if (goTime.clicked = true){
+      // let gameCell = document.querySelectorAll('.cell');
+      cellPieces.forEach(function(i) {
+
+      var cellIndex = cellPieces.item(i);
+
+          i.innerText = "";
+        // var  = gameArray[].innerHTML = "";
+
+  });
   }
 
 
@@ -141,6 +151,7 @@ function resetGame() {
 
 
 }
+
 
 
 
