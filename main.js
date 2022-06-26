@@ -1,3 +1,14 @@
+//On load button changes
+window.onload = function() {
+
+document.querySelector("#whosTurnDiv").style.display = 'none';
+document.getElementsByClassName('reset-btn')[0].innerHTML = 'Start Game';
+
+document.getElementsByClassName('game-board')[0].addEventListener("click", () => {
+document.getElementsByClassName('reset-btn')[0].innerHTML = 'Reset';
+document.querySelector("#whosTurnDiv").style.display = 'block';
+});
+}
 
 // HTML Elements
 const statusDiv = document.querySelector('.stat-div');
@@ -83,9 +94,9 @@ const checkGameStatus = () => {
   } else {
     xIsNext = !xIsNext;
     if (xIsNext) {
-      statusDiv.innerHTML = `${xSymbol} is next`;
+      statusDiv.innerHTML = `<span id='playerIconTurn'>${xSymbol}</span><br> is next`;
     } else {
-      statusDiv.innerHTML = `<span>${oSymbol} is next</span>`;
+      statusDiv.innerHTML = `<span id='playerIconTurn'>${oSymbol}</span><br><span> is next</span>`;
     }
   }
 };
@@ -94,7 +105,7 @@ const checkGameStatus = () => {
 // event Handlers
 const handleReset = () => {
   xIsNext = true;
-  statusDiv.innerHTML = `${xSymbol} is next`;
+  statusDiv.innerHTML = `<span id='playerIconTurn'>${xSymbol}</span> <br>is next`;
   for (const cellDiv of cellDivs) {
     cellDiv.classList.remove('x');
     cellDiv.classList.remove('o');
